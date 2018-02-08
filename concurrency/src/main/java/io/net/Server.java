@@ -14,7 +14,7 @@ public class Server {
         this.server = new ServerSocket(port);
     }
 
-    private void init(Attendant attendant) {
+    public void init(Attendant attendant) {
         while (true) {
             try {
                 Socket client = this.server.accept();

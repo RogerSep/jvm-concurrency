@@ -24,20 +24,23 @@ public abstract class Attendant {
                 out = new PrintWriter(client.getOutputStream(), true);
                 String clientMessage;
 
-                while ((clientMessage = in.readLine()) != null) {
+                loop: while ((clientMessage = in.readLine()) != null) {
                     switch(clientMessage) {
                         case "ping":
-                            out.write("pong");
+                            out.write("pong\n");
+                            out.flush();
                             break;
 
                         case "pong":
-                            out.write("ping");
+                            out.write("ping\n");
+                            out.flush();
                             break;
 
                         default:
-                            out.write("G'bye");
+                            out.write("G'bye\n");
+                            out.flush();
                             closeStuff(in, out, client);
-                            break;
+                            break loop;
                     }
                 }
 
